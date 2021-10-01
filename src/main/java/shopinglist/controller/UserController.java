@@ -2,7 +2,6 @@ package shopinglist.controller;
 
 import org.springframework.web.bind.annotation.*;
 import shopinglist.dto.UserCreateDto;
-import shopinglist.dto.UserDeleteDto;
 import shopinglist.dto.UserDto;
 import shopinglist.dto.UserUpdateDto;
 
@@ -21,5 +20,5 @@ public interface UserController {
     UserDto update(@PathVariable Long id, UserUpdateDto userUpdateDto);
 
     @DeleteMapping("{id}")
-    UserDto delete(@PathVariable Long id, UserDeleteDto userDeleteDto);
+    UserDto delete(@PathVariable Long id);
 }

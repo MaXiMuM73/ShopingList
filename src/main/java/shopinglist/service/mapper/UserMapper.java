@@ -1,7 +1,8 @@
-package shopinglist.dto;
+package shopinglist.service.mapper;
 
 import org.springframework.stereotype.Component;
 import shopinglist.domain.User;
+import shopinglist.dto.UserDto;
 
 @Component
 public class UserMapper {

@@ -1,7 +1,7 @@
 package shopinglist.service;
 
+import shopinglist.domain.User;
 import shopinglist.dto.UserCreateDto;
-import shopinglist.dto.UserDeleteDto;
 import shopinglist.dto.UserDto;
 import shopinglist.dto.UserUpdateDto;
 
@@ -13,7 +13,9 @@ public interface UserService {
 
     List<UserDto> findAll();
 
+    User find(Long id);
+
     UserDto update(Long id, UserUpdateDto userUpdateDto);
 
-    UserDto delete(Long id, UserDeleteDto userDeleteDto);
+    UserDto delete(Long id);
 }

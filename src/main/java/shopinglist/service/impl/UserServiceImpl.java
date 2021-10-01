@@ -3,10 +3,13 @@ package shopinglist.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import shopinglist.domain.User;
-import shopinglist.dto.*;
+import shopinglist.dto.UserCreateDto;
+import shopinglist.dto.UserDto;
+import shopinglist.dto.UserUpdateDto;
 import shopinglist.exception.UserNotFoundException;
 import shopinglist.repository.UserRepository;
 import shopinglist.service.UserService;
+import shopinglist.service.mapper.UserMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,9 +29,9 @@ public class UserServiceImpl implements UserService {
         user.setUsername(userCreateDto.getUsername());
         user.setPassword(userCreateDto.getPassword());
 
-        userRepository.save(user);
-
-        return userMapper.mapToUserDto(user);
+        return userMapper
+                .mapToUserDto(
+                        userRepository.save(user));
     }
 
     @Override
@@ -42,21 +45,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User find(Long id) {
+        return getUser(id);
+    }
+
+    @Override
     public UserDto update(Long id, UserUpdateDto userUpdateDto) {
         User user = getUser(id);
         user.setUsername(userUpdateDto.getUsername());
         user.setPassword(userUpdateDto.getPassword());
 
-        userRepository.save(user);
-
-        return userMapper.mapToUserDto(user);
+        return userMapper
+                .mapToUserDto(
+                        userRepository
+                                .save(user));
     }
 
     @Override
-    public UserDto delete(Long id, UserDeleteDto userDeleteDto) {
+    public UserDto delete(Long id) {
         User user = getUser(id);
 
-        userRepository.delete(user);
+        userRepository.delete(getUser(id));
 
         return userMapper.mapToUserDto(user);
     }

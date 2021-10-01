@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import shopinglist.controller.UserController;
 import shopinglist.dto.UserCreateDto;
-import shopinglist.dto.UserDeleteDto;
 import shopinglist.dto.UserDto;
 import shopinglist.dto.UserUpdateDto;
 import shopinglist.service.UserService;
@@ -33,8 +32,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public UserDto delete(Long id, UserDeleteDto userDeleteDto) {
-        return userService.delete(id, userDeleteDto);
+    public UserDto delete(Long id) {
+        return userService.delete(id);
     }
-
 }
