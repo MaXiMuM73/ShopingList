@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Getter
 @NoArgsConstructor(force = true)
-public class ShoppingListUpdateDto {
+public class UserCreateDto {
 
-    private final String title;
+    private final String username;
 
-    private final String content;
+    private final String password;
 }

@@ -2,22 +2,27 @@ package shopinglist.controller;
 
 import org.springframework.web.bind.annotation.*;
 import shopinglist.dto.ShoppingListCreateDto;
-import shopinglist.dto.ShoppingListDeleteDto;
 import shopinglist.dto.ShoppingListDto;
 import shopinglist.dto.ShoppingListUpdateDto;
 
-@RequestMapping("list")
+import java.util.List;
+
+@RequestMapping("list/{userId}")
 public interface ShoppingListController {
 
-    @PostMapping
-    ShoppingListCreateDto create(@RequestBody ShoppingListCreateDto shoppingListCreateDto);
+    @PostMapping()
+    ShoppingListDto create(@PathVariable Long userId,
+                           @RequestBody ShoppingListCreateDto shoppingListCreateDto);
 
-    @GetMapping("/{id}")
-    ShoppingListDto find(@PathVariable Long id);
+    @GetMapping()
+    List<ShoppingListDto> findAll(@PathVariable Long userId);
 
-    @PutMapping
-    ShoppingListUpdateDto update(@RequestBody ShoppingListUpdateDto shoppingListUpdateDto);
+    @PutMapping("{id}")
+    ShoppingListDto update(@PathVariable Long userId,
+                           @PathVariable Long id,
+                           @RequestBody ShoppingListUpdateDto shoppingListUpdateDto);
 
-    @DeleteMapping
-    ShoppingListDeleteDto delete(@RequestBody ShoppingListDeleteDto shoppingListDeleteDto);
+    @DeleteMapping("{id}")
+    ShoppingListDto delete(@PathVariable Long userId,
+                           @PathVariable Long id);
 }
