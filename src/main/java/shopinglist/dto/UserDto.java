@@ -1,8 +1,11 @@
 package shopinglist.dto;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ShoppingListDeleteDto {
-    private final Long id;
+@Getter
+public class UserDto {
+
+    private final String username;
 }
