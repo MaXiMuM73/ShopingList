@@ -1,4 +1,4 @@
-package shopinglist.dto;
+package shoppinglist.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,4 +12,12 @@ public class UserCreateDto {
     private final String username;
 
     private final String password;
+
+    @Override
+    public String toString() {
+        return "UserCreateDto{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
