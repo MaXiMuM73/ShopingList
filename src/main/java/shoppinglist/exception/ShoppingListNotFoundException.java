@@ -1,4 +1,4 @@
-package shopinglist.exception;
+package shoppinglist.exception;
 
 public class ShoppingListNotFoundException extends RuntimeException {
 

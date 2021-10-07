@@ -1,4 +1,4 @@
-package shopinglist.dto;
+package shoppinglist.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

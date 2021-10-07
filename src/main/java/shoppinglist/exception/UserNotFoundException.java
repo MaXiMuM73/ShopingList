@@ -1,4 +1,4 @@
-package shopinglist.exception;
+package shoppinglist.exception;
 
 public class UserNotFoundException extends RuntimeException {
 

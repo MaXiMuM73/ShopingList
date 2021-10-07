@@ -1,4 +1,4 @@
-package shopinglist.domain;
+package shoppinglist.domain;
 
 import lombok.Getter;
 import lombok.Setter;

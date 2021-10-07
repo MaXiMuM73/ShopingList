@@ -1,17 +1,19 @@
-package shopinglist.controller.impl;
+package shoppinglist.controller.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
-import shopinglist.controller.ShoppingListController;
-import shopinglist.dto.ShoppingListCreateDto;
-import shopinglist.dto.ShoppingListDto;
-import shopinglist.dto.ShoppingListUpdateDto;
-import shopinglist.service.ShoppingListService;
+import shoppinglist.annotation.LoggableTimeSpentOnMethods;
+import shoppinglist.controller.ShoppingListController;
+import shoppinglist.dto.ShoppingListCreateDto;
+import shoppinglist.dto.ShoppingListDto;
+import shoppinglist.dto.ShoppingListUpdateDto;
+import shoppinglist.service.ShoppingListService;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@LoggableTimeSpentOnMethods
 public class ShoppingListControllerImpl implements ShoppingListController {
 
     private final ShoppingListService shoppingListService;

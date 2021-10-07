@@ -1,4 +1,4 @@
-package shopinglist.controller.impl.advice;
+package shoppinglist.controller.impl.advice;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

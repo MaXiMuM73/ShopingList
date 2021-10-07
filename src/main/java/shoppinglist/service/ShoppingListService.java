@@ -1,8 +1,8 @@
-package shopinglist.service;
+package shoppinglist.service;
 
-import shopinglist.dto.ShoppingListCreateDto;
-import shopinglist.dto.ShoppingListDto;
-import shopinglist.dto.ShoppingListUpdateDto;
+import shoppinglist.dto.ShoppingListCreateDto;
+import shoppinglist.dto.ShoppingListDto;
+import shoppinglist.dto.ShoppingListUpdateDto;
 
 import java.util.List;
 

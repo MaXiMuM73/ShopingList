@@ -1,9 +1,9 @@
-package shopinglist.controller;
+package shoppinglist.controller;
 
 import org.springframework.web.bind.annotation.*;
-import shopinglist.dto.ShoppingListCreateDto;
-import shopinglist.dto.ShoppingListDto;
-import shopinglist.dto.ShoppingListUpdateDto;
+import shoppinglist.dto.ShoppingListCreateDto;
+import shoppinglist.dto.ShoppingListDto;
+import shoppinglist.dto.ShoppingListUpdateDto;
 
 import java.util.List;
 

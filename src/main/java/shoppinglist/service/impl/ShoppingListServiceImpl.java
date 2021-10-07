@@ -1,17 +1,17 @@
-package shopinglist.service.impl;
+package shoppinglist.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shopinglist.domain.ShoppingList;
-import shopinglist.domain.User;
-import shopinglist.dto.ShoppingListCreateDto;
-import shopinglist.dto.ShoppingListDto;
-import shopinglist.dto.ShoppingListUpdateDto;
-import shopinglist.exception.ShoppingListNotFoundException;
-import shopinglist.repository.ShoppingListRepository;
-import shopinglist.service.ShoppingListService;
-import shopinglist.service.UserService;
-import shopinglist.service.mapper.ShoppingListMapper;
+import shoppinglist.domain.ShoppingList;
+import shoppinglist.domain.User;
+import shoppinglist.dto.ShoppingListCreateDto;
+import shoppinglist.dto.ShoppingListDto;
+import shoppinglist.dto.ShoppingListUpdateDto;
+import shoppinglist.exception.ShoppingListNotFoundException;
+import shoppinglist.repository.ShoppingListRepository;
+import shoppinglist.service.ShoppingListService;
+import shoppinglist.service.UserService;
+import shoppinglist.service.mapper.ShoppingListMapper;
 
 import java.util.List;
 import java.util.Optional;
