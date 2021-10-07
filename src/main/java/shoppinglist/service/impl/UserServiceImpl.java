@@ -1,15 +1,16 @@
-package shopinglist.service.impl;
+package shoppinglist.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shopinglist.domain.User;
-import shopinglist.dto.UserCreateDto;
-import shopinglist.dto.UserDto;
-import shopinglist.dto.UserUpdateDto;
-import shopinglist.exception.UserNotFoundException;
-import shopinglist.repository.UserRepository;
-import shopinglist.service.UserService;
-import shopinglist.service.mapper.UserMapper;
+import shoppinglist.domain.User;
+import shoppinglist.dto.UserCreateDto;
+import shoppinglist.dto.UserDto;
+import shoppinglist.dto.UserUpdateDto;
+import shoppinglist.exception.UserAlreadyExistsException;
+import shoppinglist.exception.UserNotFoundException;
+import shoppinglist.repository.UserRepository;
+import shoppinglist.service.UserService;
+import shoppinglist.service.mapper.UserMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto create(UserCreateDto userCreateDto) {
+        isAlreadyExists(userCreateDto);
+
         User user = new User();
         user.setUsername(userCreateDto.getUsername());
         user.setPassword(userCreateDto.getPassword());
@@ -46,12 +49,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User find(Long id) {
-        return getUser(id);
+        return getUserById(id);
     }
 
     @Override
     public UserDto update(Long id, UserUpdateDto userUpdateDto) {
-        User user = getUser(id);
+        User user = getUserById(id);
         user.setUsername(userUpdateDto.getUsername());
         user.setPassword(userUpdateDto.getPassword());
 
@@ -63,15 +66,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto delete(Long id) {
-        User user = getUser(id);
+        User user = getUserById(id);
 
-        userRepository.delete(getUser(id));
+        userRepository.delete(getUserById(id));
 
         return userMapper.mapToUserDto(user);
     }
 
-    private User getUser(Long id) {
+    private User getUserById(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
         return userOptional.orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    private void isAlreadyExists(UserCreateDto userCreateDto) {
+        if (userRepository.findByUsername(userCreateDto.getUsername()).isPresent()) {
+            throw new UserAlreadyExistsException(userCreateDto.getUsername());
+        }
     }
 }

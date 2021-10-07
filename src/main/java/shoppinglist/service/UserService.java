@@ -1,9 +1,9 @@
-package shopinglist.service;
+package shoppinglist.service;
 
-import shopinglist.domain.User;
-import shopinglist.dto.UserCreateDto;
-import shopinglist.dto.UserDto;
-import shopinglist.dto.UserUpdateDto;
+import shoppinglist.domain.User;
+import shoppinglist.dto.UserCreateDto;
+import shoppinglist.dto.UserDto;
+import shoppinglist.dto.UserUpdateDto;
 
 import java.util.List;
 
