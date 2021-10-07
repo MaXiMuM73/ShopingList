@@ -1,9 +1,12 @@
-package shopinglist.repository;
+package shoppinglist.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import shopinglist.domain.User;
+import shoppinglist.domain.User;
+
+import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 }
