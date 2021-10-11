@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class ShoppingList {
 
     @Id
-    @SequenceGenerator(name = "listIdSeq", sequenceName = "list_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "listIdSeq", sequenceName = "list_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "listIdSeq")
     @Column(name = "id", nullable = false)
     private Long id;

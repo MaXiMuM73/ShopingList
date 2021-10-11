@@ -10,6 +10,7 @@ def spring_version = '2.5.4'
 def swagger_version = '3.0.0'
 def lombok_version = '1.18.20'
 def postgresql_version = '42.2.23'
+def flyway_version = '7.14.1'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter:' + spring_version
@@ -18,6 +19,7 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa',
             version: spring_version
     implementation group: 'org.postgresql', name: 'postgresql', version: postgresql_version
+    implementation 'org.flywaydb:flyway-core:' + flyway_version
 
     annotationProcessor "org.projectlombok:lombok:${lombok_version}"
     compileOnly 'org.projectlombok:lombok:' + lombok_version
