@@ -1,14 +1,16 @@
 package shoppinglist.controller.impl.advice;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class DefaultAdvice {
 
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler({Throwable.class})
-    public ResponseEntity<String> handleCategoryException(RuntimeException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
+    public String handleException(RuntimeException e) {
+        return e.getMessage();
     }
 }
