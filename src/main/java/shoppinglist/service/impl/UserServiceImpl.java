@@ -2,6 +2,7 @@ package shoppinglist.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import shoppinglist.domain.User;
 import shoppinglist.dto.UserCreateDto;
 import shoppinglist.dto.UserDto;
@@ -24,6 +25,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserMapper userMapper;
 
+    @Transactional
     @Override
     public UserDto create(UserCreateDto userCreateDto) {
         isAlreadyExists(userCreateDto);
@@ -34,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
         return userMapper
                 .mapToUserDto(
-                        userRepository.save(user));
+                        userRepository.saveAndFlush(user));
     }
 
     @Override
@@ -52,6 +54,7 @@ public class UserServiceImpl implements UserService {
         return getUserById(id);
     }
 
+    @Transactional
     @Override
     public UserDto update(Long id, UserUpdateDto userUpdateDto) {
         User user = getUserById(id);
@@ -61,9 +64,10 @@ public class UserServiceImpl implements UserService {
         return userMapper
                 .mapToUserDto(
                         userRepository
-                                .save(user));
+                                .saveAndFlush(user));
     }
 
+    @Transactional
     @Override
     public UserDto delete(Long id) {
         User user = getUserById(id);
