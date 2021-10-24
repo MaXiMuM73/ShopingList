@@ -1,10 +1,13 @@
 package shoppinglist.controller;
 
 import org.springframework.web.bind.annotation.*;
-import shoppinglist.dto.UserCreateDto;
-import shoppinglist.dto.UserDto;
-import shoppinglist.dto.UserUpdateDto;
+import shoppinglist.dto.user.UserCreateDto;
+import shoppinglist.dto.user.UserDto;
+import shoppinglist.dto.user.UserUpdateDto;
+import shoppinglist.dto.user.UserWithRolesDto;
+import shoppinglist.dto.user.filter.UserFilterDto;
 
+import java.util.Collection;
 import java.util.List;
 
 @RequestMapping("/user")
@@ -21,4 +24,14 @@ public interface UserController {
 
     @DeleteMapping("{id}")
     UserDto delete(@PathVariable Long id);
+
+    @PostMapping("/{email}/roles")
+    void editRoles(@PathVariable String email,
+                          @RequestBody Collection<String> newRoleCodes);
+
+    @GetMapping("/withRoles")
+    List<UserWithRolesDto> getUsers();
+
+    @PostMapping("/withRolesByFilter")
+    List<UserWithRolesDto> getUsers(@RequestBody Collection<UserFilterDto> filters);
 }

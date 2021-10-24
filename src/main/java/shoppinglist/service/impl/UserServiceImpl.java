@@ -3,18 +3,25 @@ package shoppinglist.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shoppinglist.domain.User;
-import shoppinglist.dto.UserCreateDto;
-import shoppinglist.dto.UserDto;
-import shoppinglist.dto.UserUpdateDto;
+import shoppinglist.dto.user.UserCreateDto;
+import shoppinglist.dto.user.UserDto;
+import shoppinglist.dto.user.UserUpdateDto;
+import shoppinglist.dto.user.UserWithRolesDto;
+import shoppinglist.dto.user.filter.UserFilterDto;
+import shoppinglist.entity.Role;
+import shoppinglist.entity.User;
 import shoppinglist.exception.UserAlreadyExistsException;
 import shoppinglist.exception.UserNotFoundException;
+import shoppinglist.repository.RoleRepository;
 import shoppinglist.repository.UserRepository;
+import shoppinglist.repository.specification.UserSpecification;
 import shoppinglist.service.UserService;
 import shoppinglist.service.mapper.UserMapper;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +29,8 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+
+    private final RoleRepository roleRepository;
 
     private final UserMapper userMapper;
 
@@ -75,6 +84,36 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(getUserById(id));
 
         return userMapper.mapToUserDto(user);
+    }
+
+    @Override
+    public Long getId(String email) {
+        return userRepository.findOneByEmail(email).getId();
+    }
+
+    @Transactional
+    @Override
+    public void editRole(Long userId, Collection<String> roleCodes) {
+        User user = userRepository.findById(userId).orElseThrow();
+
+        Set<Role> newRoles = roleRepository.findAllByCodeIn(roleCodes);
+
+        user.setRoles(newRoles);
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public List<UserWithRolesDto> getUsers() {
+        List<User> users = userRepository.findAllWithRoles();
+
+        return userMapper.mapUserToUserWithRolesDto(users);
+    }
+
+    @Override
+    public List<UserWithRolesDto> getUsers(Collection<UserFilterDto> filters) {
+        List<User> users = userRepository.findAll(UserSpecification.findUsers(filters));
+        return userMapper.mapUserToUserWithRolesDto(users);
     }
 
     private User getUserById(Long id) {
