@@ -2,8 +2,8 @@ package shoppinglist.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import shoppinglist.domain.ShoppingList;
-import shoppinglist.domain.User;
+import shoppinglist.entity.ShoppingList;
+import shoppinglist.entity.User;
 
 import java.util.List;
 import java.util.Optional;

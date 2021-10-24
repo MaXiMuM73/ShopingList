@@ -2,8 +2,8 @@ package shoppinglist.service.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import shoppinglist.domain.ShoppingList;
-import shoppinglist.dto.ShoppingListDto;
+import shoppinglist.entity.ShoppingList;
+import shoppinglist.dto.shoppinglist.ShoppingListDto;
 
 @Component
 @RequiredArgsConstructor

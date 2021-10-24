@@ -1,4 +1,4 @@
-package shoppinglist.domain;
+package shoppinglist.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +29,7 @@ public class ShoppingList {
     @Column(name = "creation_date", nullable = false)
     private LocalDateTime creationDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 }

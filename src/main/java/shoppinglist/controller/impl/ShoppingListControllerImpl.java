@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 import shoppinglist.annotation.LoggableTimeSpentOnMethods;
 import shoppinglist.controller.ShoppingListController;
-import shoppinglist.dto.ShoppingListCreateDto;
-import shoppinglist.dto.ShoppingListDto;
-import shoppinglist.dto.ShoppingListUpdateDto;
+import shoppinglist.dto.shoppinglist.ShoppingListCreateDto;
+import shoppinglist.dto.shoppinglist.ShoppingListDto;
+import shoppinglist.dto.shoppinglist.ShoppingListUpdateDto;
 import shoppinglist.service.ShoppingListService;
 
 import java.util.List;
