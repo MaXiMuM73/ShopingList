@@ -1,15 +1,13 @@
 package shoppinglist.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shoppinglist.entity.ShoppingList;
-import shoppinglist.entity.User;
 import shoppinglist.dto.shoppinglist.ShoppingListCreateDto;
 import shoppinglist.dto.shoppinglist.ShoppingListDto;
 import shoppinglist.dto.shoppinglist.ShoppingListUpdateDto;
+import shoppinglist.entity.ShoppingList;
+import shoppinglist.entity.User;
 import shoppinglist.exception.ShoppingListNotFoundException;
 import shoppinglist.exception.UserAccessDeniedException;
 import shoppinglist.repository.ShoppingListRepository;
