@@ -10,7 +10,7 @@ public interface ShoppingListService {
 
     ShoppingListDto create(Long userId, ShoppingListCreateDto shoppingListCreateDto);
 
-    List<ShoppingListDto> findAll(Long userId);
+    List<ShoppingListDto> findAll(String principalName, Long userId);
 
     ShoppingListDto update(Long userId, Long id, ShoppingListUpdateDto shoppingListUpdateDto);
 

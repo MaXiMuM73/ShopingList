@@ -1,6 +1,8 @@
 package shoppinglist.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import shoppinglist.entity.ShoppingList;
@@ -9,12 +11,14 @@ import shoppinglist.dto.shoppinglist.ShoppingListCreateDto;
 import shoppinglist.dto.shoppinglist.ShoppingListDto;
 import shoppinglist.dto.shoppinglist.ShoppingListUpdateDto;
 import shoppinglist.exception.ShoppingListNotFoundException;
+import shoppinglist.exception.UserAccessDeniedException;
 import shoppinglist.repository.ShoppingListRepository;
 import shoppinglist.service.ShoppingListService;
 import shoppinglist.service.UserService;
 import shoppinglist.service.mapper.ShoppingListMapper;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -43,7 +47,14 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     }
 
     @Override
-    public List<ShoppingListDto> findAll(Long userId) {
+    public List<ShoppingListDto> findAll(String principalName, Long userId) {
+        Long principalId = userService.getId(principalName);
+        User user = userService.find(principalId);
+
+        if (!Objects.equals(user.getId(), userId)) {
+            throw new UserAccessDeniedException();
+        }
+
         List<ShoppingList> allLists =
                 shoppingListRepository
                         .findAllByUser(

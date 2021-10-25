@@ -13,6 +13,8 @@ public class UserCreateDto {
 
     private final String password;
 
+    private final String email;
+
     @Override
     public String toString() {
         return "UserCreateDto{" +

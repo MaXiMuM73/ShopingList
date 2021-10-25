@@ -20,4 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     @EntityGraph("User.roles")
     @Query("select u from User u")
     List<User> findAllWithRoles();
+
+    @EntityGraph("User.roles")
+    Optional<User> findOneWithRolesByEmail(String email);
 }

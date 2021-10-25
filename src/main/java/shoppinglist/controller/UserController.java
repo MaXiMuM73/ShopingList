@@ -1,5 +1,6 @@
 package shoppinglist.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import shoppinglist.dto.user.UserCreateDto;
 import shoppinglist.dto.user.UserDto;

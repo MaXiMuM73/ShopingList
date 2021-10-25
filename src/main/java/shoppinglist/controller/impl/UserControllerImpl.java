@@ -1,6 +1,7 @@
 package shoppinglist.controller.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 import shoppinglist.annotation.LoggableTimeSpentOnMethods;
 import shoppinglist.controller.UserController;
@@ -41,6 +42,7 @@ public class UserControllerImpl implements UserController {
         return userService.delete(id);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public void editRoles(String email,
                           Collection<String> newRoleCodes) {
@@ -49,11 +51,13 @@ public class UserControllerImpl implements UserController {
         userService.editRole(userId, newRoleCodes);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public List<UserWithRolesDto> getUsers() {
         return userService.getUsers();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public List<UserWithRolesDto> getUsers(Collection<UserFilterDto> filters) {
         return userService.getUsers(filters);

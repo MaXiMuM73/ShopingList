@@ -7,6 +7,7 @@ import shoppinglist.dto.user.UserCreateDto;
 import shoppinglist.dto.user.UserDto;
 import shoppinglist.dto.user.UserUpdateDto;
 import shoppinglist.dto.user.UserWithRolesDto;
+import shoppinglist.dto.user.authentication.UserAuthenticationInfoDto;
 import shoppinglist.dto.user.filter.UserFilterDto;
 import shoppinglist.entity.Role;
 import shoppinglist.entity.User;
@@ -18,10 +19,7 @@ import shoppinglist.repository.specification.UserSpecification;
 import shoppinglist.service.UserService;
 import shoppinglist.service.mapper.UserMapper;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,6 +40,9 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUsername(userCreateDto.getUsername());
         user.setPassword(userCreateDto.getPassword());
+        user.setEmail(userCreateDto.getEmail());
+        Set<Role> newRoles = roleRepository.findAllByCodeIn(Collections.singletonList("USER"));
+        user.setRoles(newRoles);
 
         return userMapper
                 .mapToUserDto(
@@ -114,6 +115,23 @@ public class UserServiceImpl implements UserService {
     public List<UserWithRolesDto> getUsers(Collection<UserFilterDto> filters) {
         List<User> users = userRepository.findAll(UserSpecification.findUsers(filters));
         return userMapper.mapUserToUserWithRolesDto(users);
+    }
+
+    @Override
+    public Optional<UserAuthenticationInfoDto> findAuthenticationInfo(String email) {
+        Optional<User> userOpt = userRepository.findOneWithRolesByEmail(email);
+
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            return Optional.of(new UserAuthenticationInfoDto(
+                    user.getId(),
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.getRoles().stream().map(Role::getCode).collect(Collectors.toSet())
+            ));
+        } else {
+            return Optional.empty();
+        }
     }
 
     private User getUserById(Long id) {

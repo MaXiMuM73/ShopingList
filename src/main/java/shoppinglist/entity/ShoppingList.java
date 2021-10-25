@@ -30,6 +30,6 @@ public class ShoppingList {
     private LocalDateTime creationDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 }
