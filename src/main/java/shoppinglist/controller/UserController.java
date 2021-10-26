@@ -1,6 +1,5 @@
 package shoppinglist.controller;
 
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import shoppinglist.dto.user.UserCreateDto;
 import shoppinglist.dto.user.UserDto;
@@ -28,7 +27,7 @@ public interface UserController {
 
     @PostMapping("/{email}/roles")
     void editRoles(@PathVariable String email,
-                          @RequestBody Collection<String> newRoleCodes);
+                   @RequestBody Collection<String> newRoleCodes);
 
     @GetMapping("/withRoles")
     List<UserWithRolesDto> getUsers();
