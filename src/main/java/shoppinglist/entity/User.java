@@ -20,7 +20,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @SequenceGenerator(name = "userIdSeq", sequenceName = "user_sequence", allocationSize = 1)
+    @SequenceGenerator(name = "userIdSeq", sequenceName = "user_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userIdSeq")
     @Column(name = "id", nullable = false)
     private Long id;
