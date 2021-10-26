@@ -4,13 +4,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import shoppinglist.exception.AppException;
 
 @RestControllerAdvice
 public class DefaultAdvice {
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    @ExceptionHandler({Throwable.class})
-    public String handleException(RuntimeException e) {
+    @ExceptionHandler({AppException.class})
+    public String handleAppException(RuntimeException e) {
         return e.getMessage();
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({Throwable.class})
+    public String handleUnknownException() {
+        return "Unknown error.";
     }
 }
