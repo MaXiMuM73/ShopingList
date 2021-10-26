@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import shoppinglist.dto.user.UserCreateDto;
+import shoppinglist.dto.user.UserDto;
 import shoppinglist.service.UserService;
 
 @RestController
@@ -16,8 +17,7 @@ public class LoginController {
     private final UserService userService;
 
     @PostMapping("/registration")
-    public String registration(@RequestBody UserCreateDto userCreateDto) {
-        userService.create(userCreateDto);
-        return "User " + userCreateDto.getUsername() + " created.";
+    public UserDto registration(@RequestBody UserCreateDto userCreateDto) {
+        return userService.create(userCreateDto);
     }
 }
