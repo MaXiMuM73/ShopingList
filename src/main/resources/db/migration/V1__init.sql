@@ -3,7 +3,7 @@ CREATE TABLE shopping.user
     id bigserial primary key NOT NULL,
     username character varying(255) NOT NULL,
     password character varying(255) ,
-    creation_date timestamp without time zone NOT NULL,
+    creation_date timestamptz NOT NULL,
     CONSTRAINT user_name_unique UNIQUE (username)
 );
 
