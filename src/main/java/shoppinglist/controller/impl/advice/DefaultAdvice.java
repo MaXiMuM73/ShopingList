@@ -15,7 +15,7 @@ public class DefaultAdvice {
         return e.getMessage();
     }
 
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({Throwable.class})
     public String handleUnknownException() {
         return "Unknown error.";
