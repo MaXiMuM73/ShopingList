@@ -22,6 +22,7 @@ dependencies {
     implementation 'org.springframework.retry:spring-retry:' + retry_version
     implementation group: 'org.postgresql', name: 'postgresql', version: postgresql_version
     implementation 'org.flywaydb:flyway-core:' + flyway_version
+    implementation 'org.springframework.boot:spring-boot-starter-security:' + spring_version
 
     annotationProcessor "org.projectlombok:lombok:${lombok_version}"
     compileOnly 'org.projectlombok:lombok:' + lombok_version

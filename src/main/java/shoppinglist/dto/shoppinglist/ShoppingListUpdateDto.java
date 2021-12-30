@@ -1,4 +1,4 @@
-package shoppinglist.dto;
+package shoppinglist.dto.shoppinglist;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

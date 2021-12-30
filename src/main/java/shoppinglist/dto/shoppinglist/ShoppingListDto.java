@@ -1,7 +1,8 @@
-package shoppinglist.dto;
+package shoppinglist.dto.shoppinglist;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import shoppinglist.dto.user.UserDto;
 
 import java.time.LocalDateTime;
 

@@ -1,12 +1,13 @@
 package shoppinglist.controller.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 import shoppinglist.annotation.LoggableTimeSpentOnMethods;
 import shoppinglist.controller.ShoppingListController;
-import shoppinglist.dto.ShoppingListCreateDto;
-import shoppinglist.dto.ShoppingListDto;
-import shoppinglist.dto.ShoppingListUpdateDto;
+import shoppinglist.dto.shoppinglist.ShoppingListCreateDto;
+import shoppinglist.dto.shoppinglist.ShoppingListDto;
+import shoppinglist.dto.shoppinglist.ShoppingListUpdateDto;
 import shoppinglist.service.ShoppingListService;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class ShoppingListControllerImpl implements ShoppingListController {
 
     @Override
     public List<ShoppingListDto> findAll(Long userId) {
-        return shoppingListService.findAll(userId);
+        return shoppingListService.findAll(getPrincipalName(), userId);
     }
 
     @Override
@@ -36,5 +37,9 @@ public class ShoppingListControllerImpl implements ShoppingListController {
     @Override
     public ShoppingListDto delete(Long userId, Long id) {
         return shoppingListService.delete(userId, id);
+    }
+
+    private String getPrincipalName() {
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 }
